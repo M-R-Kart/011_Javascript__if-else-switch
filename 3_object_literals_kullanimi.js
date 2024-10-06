@@ -5,9 +5,18 @@ veri türüdür. Her değerin bir anahtarı (key) ve değeri (value) vardır.
 Object literals ise JavaScript te nesne oluşturmanın en basit yoludur; 
 süslü parantezler {} içinde anahtar-değer çiftleriyle nesne tanımlanır.
 
-//! Object Literals ile Nesne Oluşturma :
+//! 1) Object Literals ile Nesne Oluşturma :
 Object literals, anahtar-değer çiftlerini kullanarak nesneleri tanımlamak için kullanılır. 
 Aşağıda basit bir örnek bulunuyor.
+
+// let firstName = "Muhammet";
+// let lastName = "Kart";
+
+// let firstName2 = "Muhammet";
+// let lastName2 = "Kart"; //! Kullanımı kesinlikle çok zor.
+
+// let muhammet = ["Muhammet","Kart","28"];
+// let esra = ["Esra","Yaşlı",40];  //! Kullanımı kesinlikle çok zor.
 
   //? Örnek:
 
@@ -19,12 +28,12 @@ Aşağıda basit bir örnek bulunuyor.
     
     Bu örnekte, kisi adlı nesne üç farklı anahtar-değer çiftinden oluşuyor: ad, yas ve meslek.
 
-//! //////////////////////////////////////////////////////////////////////////////////////////
+//! /////////////////////////////////////////////////////////////////////////////////////////
 
-//! Nesneye Erişim:
+//! 2) Nesneye Erişim:
 Bir nesnenin içerisindeki verilere iki farklı yolla erişebilirsin.
 
-  //! 1. Nokta Notasyonu (.)
+  //! a. Nokta Notasyonu (.)
 
     //? Örnek: 
 
@@ -39,7 +48,7 @@ Bir nesnenin içerisindeki verilere iki farklı yolla erişebilirsin.
   
   //! ************************************************
 
-  //! 2. Köşeli Parantez Notasyonu ([])
+  //! b. Köşeli Parantez Notasyonu ([])
   Anahtarın bir string olduğu durumlarda veya dinamik bir anahtar kullanıldığında kullanılır.   
 
     //? Örnek: 
@@ -52,14 +61,16 @@ Bir nesnenin içerisindeki verilere iki farklı yolla erişebilirsin.
       
       console.log(kisi["meslek"]); // "Mühendis"
       
-      let ozellik = "yas";
-      console.log(kisi[ozellik]); // 25
+    *  Nokta notasyonu en yaygın ve okunaklı yöntemdir.
+    *  Köşeli parantez notasyonu ise özellikle anahtar adı bir değişken olduğunda kullanılır.
   
-  //! ************************************************
+//! /////////////////////////////////////////////////////////////////////////////////////////
 
-//! Nesneye Yeni Özellik Ekleme
+//! 3. Nesneye Yeni Özellik Ekleme veya Mevcut Özelliği Değiştirme
 Nesneye yeni bir özellik eklemek için basitçe nokta notasyonu veya köşeli parantez 
 notasyonu kullanabilirsin.
+
+  //! a. Yeni Özellik Ekleme:
 
     //? Örnek: 
 
@@ -69,54 +80,42 @@ notasyonu kullanabilirsin.
         meslek: "Mühendis", // anahtar: meslek, değer: "Mühendis"
       };
 
-      kisi.soyad = "Yılmaz";
-      console.log(kisi.soyad);
-
-    //veya
-    
+      kisi.soyad = "Yılmaz"; // Yeni Özellik eklendi.
+      console.log(kisi.soyad); // Yılmaz
 
   //! ************************************************
 
+  //! b. Mevcut Özelliği Değiştirme:
+    
+    //? Örnek:
 
+      let kisi = {
+        ad: "Ahmet", // anahtar: ad, değer: "Ahmet"
+        yas: 25, // anahtar: yas, değer: 25
+        meslek: "Mühendis", // anahtar: meslek, değer: "Mühendis"
+      };
+      
+      kisi.ad = "Mehmet"; // Mevcu ad değişti.
+      console.log(kisi.ad); // Mehmet
 
+//! /////////////////////////////////////////////////////////////////////////////////////////
 
+//! 4. Nesne İçinde Fonksiyon (Yöntem) Tanımlama
+Nesneler yalnızca verileri tutmaz, aynı zamanda fonksiyonlar da içerebilir. 
+Bu fonksiyonlara yöntem (method) denir.
 
+    //? Örnek: 
 
+      let kisi = {
+        ad: "Ahmet", // anahtar: ad, değer: "Ahmet"
+        yas: 25, // anahtar: yas, değer: 25
+        selamVer: function () {
+          console.log("Merhaba, benim adım" + " " + this.ad);
+        },
+      };
+      
+      kisi.selamVer(); // "Merhaba, benim adım Ahmet"
 
-
-
-// let firstName = "Muhammet";
-// let lastName = "Kart";
-
-// let firstName2 = "Muhammet";
-// let lastName2 = "Kart"; //! Kullanımı kesinlikle çok zor.
-
-// let muhammet = ["Muhammet","Kart","28"];
-// let esra = ["Esra","Yaşlı",40];  //! Kullanımı kesinlikle çok zor.
-
-///////////////////////////////////////////////////////
-
-let veri;
-let user = {
-  usurName: "muhammet",
-  firstName: "Muhammet",
-  lastName: "Kart",
-  age: 28,
-  hobbies: ["spor", "kitap okumak", "yazılım"],
-  adress: {
-    city: "İstanbul",
-    country: "Türkiye",
-    phone: "0555 444 33 22",
-  },
-};
-
-veri = user;
-veri = user.firstName;
-veri = user.lastName;
-veri = user.hobbies;
-veri = user.hobbies.length;
-veri = user.adress.city;
-veri = user.adress.phone;
-
-console.log(veri);
-console.log(typeof user);
+    * Burada selamVer, kisi nesnesine ait bir fonksiyondur.
+    * this anahtar kelimesi, o anki nesneyi ifade eder. 
+      Yani this.ad, kisi nesnesindeki ad özelliğine işaret eder.    
